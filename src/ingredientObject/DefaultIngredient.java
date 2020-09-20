@@ -28,4 +28,9 @@ public abstract class DefaultIngredient implements Ingredient {
     public int getWeight() {
         return weight;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
