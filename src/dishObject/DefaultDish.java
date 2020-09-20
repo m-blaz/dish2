@@ -2,6 +2,7 @@ package dishObject;
 
 import interfaces.Dish;
 import interfaces.Ingredient;
+import tasteObject.Taste;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,36 @@ public class DefaultDish implements Dish {
 
     @Override
     public void cook() {
+        boolean sweet = false;
+        boolean salt = false;
+
+        for (Ingredient ingredient : ingredients) {
+            if(ingredient.getTaste().equals(Taste.SALTY))
+                salt = true;
+        }
+
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getTaste().equals(Taste.SWEET)) {
+                sweet = true;
+            }
+        }
+
+        if(sweet && salt) {
+            System.out.println("Нельзя смешивать сладкое с солёным");
+            System.out.println(name);
+            System.out.println("ingredients = " + ingredients);
+            return;
+        }
+
+        if(ingredients.size() >= 4) {
+            System.out.println("Нельзя добавить больше 4-х ингредиентов");
+            System.out.println(name);
+            System.out.println("ingredients = " + ingredients);
+            return;
+        }
+
+        System.out.println(name);
+        System.out.println("ingredients = " + ingredients);
 
     }
 }
